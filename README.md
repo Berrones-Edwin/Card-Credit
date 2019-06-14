@@ -4,7 +4,7 @@
 
 # Capturas de pantalla
 
-![Captura Pantalla](./celular.png)
+![Captura Pantalla](celular.png)
 
 ![Captura Pantalla](./escritorio.png)
 
