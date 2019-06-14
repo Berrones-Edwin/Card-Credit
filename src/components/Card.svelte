@@ -251,6 +251,7 @@
     .form__container{
         width: 100%;
         margin-bottom: 1rem;
+
     }
     .sideRight__form{
         flex-direction: column;
@@ -258,13 +259,14 @@
         word-wrap: break-word;
         background-color: #fff;
         background-clip: border-box;
-        border: 1px solid rgba(0,0,0,.125);
+        border: 5px solid rgba(0,0,0,.125);
         border-radius: .25rem;
         padding:10px;
 
     }
     .sideRight__container{
-         border: 1px solid rgba(0,0,0,.125);
+        border: 5px solid rgba(0,0,0,.125);
+        border-bottom:0;
         padding:10px;
         display:flex;
         flex-direction:row;
