@@ -8,5 +8,3 @@
 
 ![Captura Pantalla](./escritorio.png)
 
-# Now 
-[Ir a Now]()
