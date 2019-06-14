@@ -7,9 +7,3 @@
 ![Captura Pantalla](celular.png)
 
 ![Captura Pantalla](./escritorio.png)
-
-<<<<<<< HEAD
-=======
-# Now 
-[Ir a Now]()
->>>>>>> 45a31a74bae971bc76ff31761efab6e69fb827d1
