@@ -1,27 +1,13 @@
 <script>
-    export let type='success';
+    export let type='';
     export let title = 'Genial!!';
     export let description='Tu tarjeta ha sido de alta satisfactoriamente';
     export let closeModal= false;
+    export let src = 'img/success.png';
 
-    let src = '';
-    if(type==='success')     src='img/success.png';
-    else if(type==='danger') src='img/error.png';
-    else if(type==='info')   src='img/info.png';
-
-    
     const close = ()=>{
         document.getElementById('myModal').classList.add('close')
     }
-
-    const removeClassClose =()=>{
-        
-    }
-
-   
-    
-
-
 </script>
 <style>
     .container{

@@ -16,13 +16,17 @@
         title:'',
         description:'',
         type:'',
-        closeModal:true
+        closeModal:true,
+        src:''
     }
+
+    let months=['01','02','03','04','05','06','07','08','09','10','11','12'];
 
     // Validations
     let numberCardValidate =false;
     let nameCardValidate=false;
     let monthCardValidate=false;
+    let monthCardValidate2=false;
     let yearCardValidate=false;
     let cvvCardValidate=false;
 
@@ -56,6 +60,7 @@
             alertProops.description='Solo se permiten números';
             alertProops.type='danger';
             alertProops.closeModal=false;
+            alertProops.src='img/error.png';
 
 
             return true;
@@ -65,7 +70,10 @@
 
     const formattingNumberCard = () =>{
         changeLogo();
-        if(onlyNumber(numberCard)) numberCard='';
+        if(onlyNumber(numberCard)) { 
+            numberCard='';
+            document.getElementById('numberCard').classList.add('inputInvalid')
+        }
         if(numberCard.length===4) numberCard+=' ';
         else if(numberCard.length===9) numberCard+=' ';
         else if(numberCard.length===14) numberCard+=' ';
@@ -73,56 +81,45 @@
 
     const formattingMonthCard = () =>{
 
-         if(onlyNumber(monthCard)) monthCard='';
-
-         let aux = monthCard;
-         let number = [1,2,3,4,5,6,7,8,9];
-
-         for(let i = 0 ; i< number.length;i++)
-             if(Number(monthCard) === number[i])
-                 monthCard = '0' + aux;
-
-             
+        if(onlyNumber(monthCard)){ 
+             monthCard='';
+             document.getElementById('monthCard').classList.add('inputInvalid')
+        }
+      
     }
     const formattingYearCard = () =>{
 
-        if(onlyNumber(yearCard)) yearCard='';
+        if(onlyNumber(yearCard)){
+             yearCard='';
+             document.getElementById('yearCard').classList.add('inputInvalid')
+        }
     }
     const formattingCvvCard = () =>{
+        if(onlyNumber(cvvCard)){
+            cvvCard='';
+            document.getElementById('cvvCard').classList.add('inputInvalid')
 
-        if(onlyNumber(cvvCard)) cvvCard='';
+        }
     }
-
-
-
     const addCardCredit = (e) =>{
 
         e.preventDefault();
         if(numberCard.length>0 && nameCard.length>0 && monthCard.length>0 && yearCard.length>0 && cvvCard.length>0){
             
             if(numberCard.length<19){
-                const x = document.getElementById('numberCard')
-                console.log(x);
-                x.classList.add('inputInvalid');
-
                 numberCardValidate =true;
                 return;
             }
-            if(monthCard.length <2 || monthCard.length > 2){
-                
-                document.getElementById('monthCard').classList.add('inputInvalid');
-                 monthCardValidate=true;
-                 return;
-            }
             if(yearCard.length <4 || yearCard.length > 4){
-                
-                document.getElementById('yearCard').classList.add('inputInvalid');
                 yearCardValidate=true;
                 return;
+            }else{
+                if(Number(yearCard)< new Date().getFullYear()){
+                    yearCardValidate=true;
+                    return;
+                }
             }
             if(cvvCard.length <3 || cvvCard.length > 3){
-                
-                document.getElementById('cvvCard').classList.add('inputInvalid');
                 cvvCardValidate=true;
                 return;
             }
@@ -138,13 +135,20 @@
             alertProops.description='El método de pago se agregó satisfactoriamente';
             alertProops.type='success';
             alertProops.closeModal=false;
+            alertProops.src='img/success.png';
 
         }else{
-            numberCardValidate =true;
-            nameCardValidate=true;
-            monthCardValidate=true;
-            yearCardValidate=true;
-            cvvCardValidate=true;
+
+            if(numberCard === '')
+                numberCardValidate =true;
+            if(nameCard === '')
+                nameCardValidate=true;
+            if(monthCard === '')
+                monthCardValidate=true;
+            if(yearCard === '')
+                yearCardValidate=true;
+            if(cvvCard === '')
+                cvvCardValidate=true;
         }
 
     }
@@ -158,8 +162,10 @@
     }
     .title{
         text-align: center;
+        margin-top: 1rem;
         margin-bottom: 1rem;
         letter-spacing: 2px;
+
     }
     /*ESTILOS TARJETA*/
 
@@ -169,22 +175,34 @@
     }
     .sideleft__creditCard{
         height: 200px;
-        background-color: #ccc;
+        background: #E6DADA; 
+        background: -webkit-linear-gradient(to top, #274046, #E6DADA);
+        background: linear-gradient(to top, #274046, #E6DADA); 
         width:90%;
         margin:0 auto;
         border-radius: 10px;
         box-shadow: 4px 3px 4px 0px rgb(112, 109, 109);
+        color:#FFF;
 
     }
     .backgroundAmerican{
-        background-color: #a3d7f5;
+        background: #2193b0; 
+        background: -webkit-linear-gradient(to bottom, #6dd5ed, #2193b0);
+        background: linear-gradient(to bottom, #6dd5ed, #2193b0); 
+
     }
     .backgroundVisa{
-        background-color:#619edb ;
-        color:#FFF;
+        background: #0575E6; 
+        background: -webkit-linear-gradient(to left, #021B79, #0575E6);
+        background: linear-gradient(to left, #021B79, #0575E6); 
+
+
     } 
     .backgroundMaster{
-        background-color:#f5c668 ;
+        background: #FF8008; 
+        background: -webkit-linear-gradient(to bottom, #FFC837, #FF8008);
+        background: linear-gradient(to bottom, #FFC837, #FF8008); 
+
     }
     .creditCard__container{
         width:100%;
@@ -233,10 +251,38 @@
     .form__container{
         width: 100%;
         margin-bottom: 1rem;
+    }
+    .sideRight__form{
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        padding:10px;
 
     }
+    .sideRight__container{
+         border: 1px solid rgba(0,0,0,.125);
+        padding:10px;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-between;
+    }
+    .sideRight__img{
+        width:40px;
+        height:40px;
+    }
+    .sideRight__title{
+        color:rgb(78, 76, 76);
+        font-weight:normal;
+        letter-spacing:2px;
+        /* text-align:center; */
+    }
     .form__container label,
-    .form__container input{
+    .form__container input,
+    .form__container select {
         width: 100%;
         
     }
@@ -245,19 +291,21 @@
         letter-spacing: 1px;
     }
 
-    input:focus{
+    input:focus,
+    select:focus,
+    option:focus{
         border:none;
         outline: none;
         outline:1px solid #ccc;
     }
-    .sideRight__form button{
+    .sideRight__form .btn{
         width: 100%;
         border-radius:10px;
         background-color: #6c757d;
         border-color: #6c757d;
         color:#FFF;
     }
-    .sideRight__form button:hover{
+    .sideRight__form .btn:hover{
         color: #fff;
         background-color: #5a6268;
         border-color: #545b62;
@@ -303,7 +351,8 @@
          .form__container:nth-child(3) label{
              width: 100%;
          }
-         .form__container:nth-child(3) input{
+         .form__container:nth-child(3) input,
+         .form__container:nth-child(3) select{
              width: 45%;
              margin-right: 1rem;
              
@@ -358,8 +407,15 @@
        </div>
     </div>
     <div class="card-sideRight">
+        <div class="sideRight__container">
+            <h2 class="sideRight__title">Detalles de la Tarjeta</h2>
+            <img class="sideRight__img" src="img/master.png" alt="master">
+            <img class="sideRight__img" src="img/visa.png" alt="visa">
+            <img class="sideRight__img" src="img/american.png" alt="american">
+        </div>
         <form action="" class="sideRight__form">
 
+            <!-- Número Pago -->
             <div class="form__container">
 
                 <label for="numberCard">Número de la tarjeta</label>
@@ -377,7 +433,7 @@
                     <Alert description={'Campo es Invalido. Escriba los 16 digitos de su tarjeta.'} />
                 {/if}
             </div>
-
+            <!-- Nombre de la tarjeta -->
             <div class="form__container">
 
                 <label for="nameCard">Nombre del tarjeta habiente</label>
@@ -393,22 +449,19 @@
                      <Alert description={'Campo es Invalido.Introuduzca su nombre completo'} />
                 {/if}
             </div>
-
+            
+            <!-- Fecha Vencimiento -->
             <div class="form__container">
 
                 <label for="monthCard"> Fecha de Vencimiento</label>
-                <input type="text" 
-                        placeholder="MM"   
-                        minlength="2" 
-                        maxlength="2"
-                        name="monthCard"
-                        bind:value={monthCard}
-                        pattern="\d*"
-                        required
-                        autocomplete="off"
-                        id="monthCard"
-                        on:keyup={formattingMonthCard}
-                        class:inputInvalid={monthCardValidate}>
+
+                <select id="monthCard" name="monthCard" 
+                        bind:value={monthCard} required
+                        class:inputInvalid={monthCardValidate} >
+                    {#each months as m}
+                        <option value="{m}">{m}</option>
+                    {/each}
+                </select>
                     
 
                 <input type="text" 
@@ -425,15 +478,23 @@
                         class:inputInvalid={yearCardValidate}>
 
             </div>
+
              {#if monthCardValidate || yearCardValidate }
 
                 <Alert description={'Campo es Invalido.Verifique si el mes  y año son correctos.'} />
 
             {/if}
 
+             {#if monthCardValidate2}
+
+                <Alert description={'Campo es Invalido. Introduzca un mes válido'} />
+
+            {/if}
+
+            <!-- CVV -->
             <div class="form__container">
                 <label for="cvvCard">CVV</label>
-                <input type="text" 
+                <input type="password" 
                         placeholder="***" 
                         maxlength="3" 
                         minlength="3"
