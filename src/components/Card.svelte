@@ -20,7 +20,7 @@
         src:''
     }
 
-    let months=['01','02','03','04','05','06','07','08','09','10','11','12'];
+    let months=['02','03','04','05','06','07','08','09','10','11','12'];
 
     // Validations
     let numberCardValidate =false;
@@ -105,10 +105,17 @@
 
         e.preventDefault();
         if(numberCard.length>0 && nameCard.length>0 && monthCard.length>0 && yearCard.length>0 && cvvCard.length>0){
-            
-            if(numberCard.length<19){
+             numberCard = numberCard.replace(/\s/g, '');
+
+            if(numberCard.length<16){
                 numberCardValidate =true;
                 return;
+
+            }else if(numberCard.length===16){
+               if(isNaN(numberCard)) {
+                   numberCardValidate =true;
+                    return;
+               }
             }
             if(yearCard.length <4 || yearCard.length > 4){
                 yearCardValidate=true;
@@ -460,6 +467,7 @@
                 <select id="monthCard" name="monthCard" 
                         bind:value={monthCard} required
                         class:inputInvalid={monthCardValidate} >
+                        <option selected value="01">01</option>
                     {#each months as m}
                         <option value="{m}">{m}</option>
                     {/each}
