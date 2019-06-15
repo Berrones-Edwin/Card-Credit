@@ -4,12 +4,10 @@
 
 # Capturas de pantalla
 
-![Captura Pantalla](celular.png)
+![Captura Pantalla](https://github.com/Berrones-Edwin/Card-Credit/blob/master/celular.PNG)
 
-![Captura Pantalla](./escritorio.png)
+![Captura Pantalla](https://github.com/Berrones-Edwin/Card-Credit/blob/master/escritorio.PNG)
 
-<<<<<<< HEAD
-=======
-# Now 
-[Ir a Now]()
->>>>>>> 45a31a74bae971bc76ff31761efab6e69fb827d1
+
+# Demo
+[Ver Demo](https://berrones-edwin.github.io/Card-Credit/)
