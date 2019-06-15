@@ -144,6 +144,11 @@
             alertProops.closeModal=false;
             alertProops.src='img/success.png';
 
+            numberCard ='';
+            nameCard='';
+            monthCard='';
+            yearCard='';
+            cvvCard='';
         }else{
 
             if(numberCard === '')
